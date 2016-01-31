@@ -18,6 +18,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
@@ -128,14 +129,16 @@
         android:id="@+id/intro_fragment"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_gravity="left"
-        android:layout_weight="0.07" />
+        android:layout_weight="0.05"
+        tools:layout="@layout/sample_main"
+        android:layout_gravity="left" />
 
     <fragment
         android:name="com.tbay.android.common.logger.LogFragment"
         android:id="@+id/log_fragment"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        tools:layout="@layout/sample_main" />
 
 </LinearLayout>

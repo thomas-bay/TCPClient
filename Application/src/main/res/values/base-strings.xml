@@ -15,7 +15,7 @@
  limitations under the License.
 -->
 <resources>
-    <string name="app_name">TCPClient</string>
+    <string name="app_name">TCPClient v1.00</string>
     <string name="intro_message">
         <![CDATA[Test: Checks if network connection is available.\nStart: Starts sending data on TCP socket.\nStop:  Stops sending data on TCP socket.\nClear: Clears the logscreen]]>
     </string>

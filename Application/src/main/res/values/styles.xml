@@ -20,7 +20,7 @@
 
     <style name="Widget.SampleOutput">
         <item name="android:padding">@dimen/margin_medium</item>
-        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
         <item name="android:lineSpacingMultiplier">1.1</item>
     </style>
 

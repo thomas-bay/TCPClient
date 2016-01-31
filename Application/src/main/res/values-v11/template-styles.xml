@@ -19,4 +19,6 @@
     <!-- Activity themes -->
     <style name="Theme.Base" parent="android:Theme.Holo.Light" />
 
+    <style name="AppTheme" parent="android:Theme.Holo.Light" />
+
 </resources>

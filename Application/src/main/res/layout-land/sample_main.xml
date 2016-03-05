@@ -21,9 +21,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/sample_main">
+    android:layout_height="fill_parent">
 
     <TableLayout
         android:layout_width="match_parent"
@@ -71,7 +69,7 @@
                 android:id="@+id/textView4"
                 android:layout_column="0"
                 android:layout_marginLeft="2dp"
-            />
+                />
 
             <EditText
                 android:layout_width="match_parent"
@@ -128,7 +126,7 @@
         android:id="@+id/intro_fragment"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:layout_weight="0.05"
         tools:layout="@layout/sample_main"
         android:layout_gravity="left" />
@@ -137,6 +135,7 @@
         android:name="com.tbay.android.common.logger.LogFragment"
         android:id="@+id/log_fragment"
         android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:layout="@layout/sample_main" />

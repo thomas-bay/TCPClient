@@ -20,21 +20,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/sample_main">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top"
         android:background="@color/light_green"
         android:orientation="vertical">
 
         <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="6dp">
 
@@ -43,7 +42,9 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Text to send: "
-                android:id="@+id/textView3" />
+                android:id="@+id/textView3"
+                android:gravity="center_vertical"
+                android:clickable="false" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -55,12 +56,13 @@
                 android:focusable="true"
                 android:clickable="true"
                 android:windowSoftInputMode="stateHidden"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:singleLine="false" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp">
 
             <TextView
@@ -71,14 +73,15 @@
                 android:id="@+id/textView4"
                 android:layout_column="0"
                 android:layout_marginLeft="2dp"
-            />
+                android:gravity="center_vertical"
+                android:clickable="false" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/ip_text"
-                android:id="@+id/textView2"
+                android:id="@+id/DestinationIP"
                 android:nestedScrollingEnabled="false"
                 android:clickable="true"
                 android:enabled="true"
@@ -87,12 +90,24 @@
                 android:layout_column="1"
                 android:lines="1"
                 android:windowSoftInputMode="stateHidden"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/port_number"
+                android:id="@+id/PortNumber"
+                android:layout_column="2"
+                android:textSize="14sp"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:numeric="decimal" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="2dp" >
 
             <TextView
@@ -102,43 +117,98 @@
                 android:text="Source IP:"
                 android:id="@+id/textView5"
                 android:layout_column="0"
-                android:layout_marginLeft="2dp" />
+                android:layout_marginLeft="2dp"
+                android:gravity="center_vertical"
+                android:clickable="false" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="NA"
                 android:id="@+id/textView6"
                 android:nestedScrollingEnabled="false"
-                android:clickable="true"
+                android:clickable="false"
                 android:enabled="true"
                 android:focusable="true"
                 android:layout_weight="0.11"
                 android:layout_column="1"
                 android:lines="1"
                 android:windowSoftInputMode="stateHidden"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:gravity="center_vertical" />
         </TableRow>
 
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp">
+
+            <TextView
+                android:text="Tx delay:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textDelay"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:id="@+id/delay"
+                android:layout_column="1"
+                android:text="1000"
+                android:textSize="14sp"
+                android:numeric="decimal"
+                android:singleLine="true"
+                android:layout_width="60dp" />
+
+            <TextView
+                android:text="ms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textUnit"
+                android:layout_column="2" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp">
+
+            <TextView
+                android:text="Num transmissions:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textNumber"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/number_of_tx"
+                android:layout_column="1"
+                android:numeric="decimal"
+                android:text="10"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:layout_width="60dp" />
+        </TableRow>
     </TableLayout>
 
-    <fragment
-        android:name="com.tbay.android.tcpclient.SimpleTextFragment"
-        android:id="@+id/intro_fragment"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
-        tools:layout="@layout/sample_main"
-        android:layout_gravity="left" />
+
 
     <fragment
-        android:name="com.tbay.android.common.logger.LogFragment"
-        android:id="@+id/log_fragment"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        tools:layout="@layout/sample_main" />
+        android:layout_height="wrap_content"
+        android:name="com.tbay.android.tcpclient.SimpleTextFragment"
+        android:id="@+id/intro_fragment" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.tbay.android.common.logger.LogFragment"
+        android:id="@+id/log_fragment" />
 
 </LinearLayout>

@@ -23,5 +23,6 @@
     <string name="start_text">Start</string>
     <string name="stop_text">Stop</string>
     <string name="send_text">Dut duttelut!</string>
-    <string name="ip_text">10.0.0.10</string>
+    <string name="ip_text">10.0.0.12</string>
+    <string name="port_number">8003</string>
 </resources>

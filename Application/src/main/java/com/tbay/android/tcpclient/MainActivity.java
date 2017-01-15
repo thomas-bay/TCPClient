@@ -21,10 +21,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
-import android.text.format.Formatter;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -35,7 +32,9 @@ import com.tbay.android.common.logger.LogFragment;
 import com.tbay.android.common.logger.LogWrapper;
 import com.tbay.android.common.logger.MessageOnlyLogFilter;
 
-import java.io.CharArrayWriter;
+import java.io.IOException;
+import java.net.InetAddress;
+
 
 /**
  * Sample application demonstrating how to test whether a device is connected,
@@ -66,7 +65,7 @@ public class MainActivity extends FragmentActivity {
         SimpleTextFragment introFragment = (SimpleTextFragment)
                     getSupportFragmentManager().findFragmentById(R.id.intro_fragment);
         introFragment.setText(R.string.intro_message);
-        introFragment.getTextView().setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16.0f);
+        //introFragment.getTextView().setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16.0f);
 
         // Initialize the logging framework.
         initializeLogging();
@@ -132,12 +131,19 @@ public class MainActivity extends FragmentActivity {
      */
     private void startSending() {
 
-        EditText Ip = (EditText)findViewById(R.id.textView2);
-        EditText Txt = (EditText)findViewById(R.id.textView);
-        String[] args = new String[2];
+        EditText Ip = (EditText)findViewById(R.id.DestinationIP);
+        EditText Port = (EditText)findViewById(R.id.PortNumber);
 
-        args[0] = Ip.getText().toString();
+        EditText Txt = (EditText)findViewById(R.id.textView);
+
+        EditText Delay = (EditText)findViewById(R.id.delay);
+        EditText NumTx = (EditText)findViewById(R.id.number_of_tx);
+
+        String[] args = new String[4];
+        args[0] = Ip.getText().toString() + ':' +  Port.getText().toString();
         args[1] = Txt.getText().toString();
+        args[2] = Delay.getText().toString();
+        args[3] = NumTx.getText().toString();
 
         String IPStr = "Sending started at: ";
 
@@ -162,6 +168,26 @@ public class MainActivity extends FragmentActivity {
           mobileConnected = activeInfo.getType() == ConnectivityManager.TYPE_MOBILE;
           if(wifiConnected) {
               Log.i(TAG, getString(R.string.wifi_connection));
+
+              EditText Ip = (EditText)findViewById(R.id.DestinationIP);
+
+              String ged = Ip.getText().toString();
+
+              try {
+                  InetAddress address = InetAddress.getByName(Ip.getText().toString());
+                  if (address.isReachable(2000))
+                      Log.i(TAG, Ip.toString() + " is reachable");
+                  else
+                      Log.i(TAG, Ip.toString() + " is not reachable");
+              }
+              catch(IOException e) {
+                  Log.i(TAG, e.getMessage());
+              }
+              catch(Exception e) {
+                  Log.i(TAG, "Exception: " + e.getMessage());
+              }
+
+
           } else if (mobileConnected){
               Log.i(TAG, getString(R.string.mobile_connection));
           }
